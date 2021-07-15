@@ -1,0 +1,32 @@
+docker 镜像导入导出
+今天有个朋友因为公司网络有个镜像导不出来，找我帮他导出发他。正好学习一下docker如何导出导入镜像。
+一共就四个命令：
+docker save #ID or #Name
+docker export #ID or #Name
+docker load用来载入镜像包，docker import用来载入容器包，但两者都会恢复为镜像；
+docker load不能对载入的镜像重命名，而docker import可以为镜像指定新名称。
+
+1、docker save 保存的是镜像
+  （1）通过镜像ID导为ta.tar文件
+   docker save -o Downloads/ta.tar  3691b160c41f（源镜像id）
+   
+  （2）通过镜像地址导为metrics.tar文件
+   docker save  k8s.gcr.io/kube-state-metrics/kube-state-metrics:v2.0.0 > Downloads/metrics.tar
+
+ 
+2、docker export 保存的是容器
+  （1）通过容器ID或者容器名称导出we.tar文件
+   docker export 9eda0ae0fb50  > ./we.tar
+ 
+3、docker load
+
+
+
+4、docker export
+
+
+
+总结一下docker save和docker export的区别：
+    docker save保存的是镜像（image），docker export保存的是容器（container）；
+    docker load用来载入镜像包，docker import用来载入容器包，但两者都会恢复为镜像；
+    docker load不能对载入的镜像重命名，而docker import可以为镜像指定新名称。
